@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block title %} Delete User {% endblock %}
+{% block content %}
+
+<!-- Flash Messages -->
+{% with msg = get_flashed_messages(with_categories=True) %}
+{% if msg %}
+  {% for category, msg in msg %}
+    <div class="mb-4 p-4 rounded-md text-white font-semibold text-center 
+                {% if category == 'success' %} bg-green-500 
+                {% elif category == 'error' %} bg-red-500 
+                {% else %} bg-gray-500 {% endif %}">
+      {{ msg }}
+    </div>
+  {% endfor %}
+{% endif %}
+{% endwith %}
+
+<h1 class="text-xl font-bold mb-4 text-gray-700">Enter Email to Delete User:</h1>
+
+<form action="{{ url_for('delete_user') }}" method="post" class="space-y-4 max-w-sm">
+  <div>
+    <label for="email" class="block font-semibold text-gray-700">Email:</label>
+    <input type="email" name="email" required 
+           class="mt-1 w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-400">
+  </div>
+  <button type="submit" 
+          class="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded-md font-semibold">
+    Submit
+  </button>
+</form>
+
+{% endblock %}

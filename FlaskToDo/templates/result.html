@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block title %} User Result {% endblock %}
+{% block content %}
+
+<!-- Flash Messages -->
+{% with msg = get_flashed_messages(with_categories=True) %}
+{% if msg %}
+  {% for category, msg in msg %}
+    <div class="mb-4 p-4 rounded-md text-white font-semibold text-center 
+                {% if category == 'success' %} bg-green-500 
+                {% elif category == 'error' %} bg-red-500 
+                {% else %} bg-gray-500 {% endif %}">
+      {{ msg }}
+    </div>
+  {% endfor %}
+{% endif %}
+{% endwith %}
+
+<h3 class="text-xl font-bold text-gray-800 mb-4">User Details: {{ user[2] }}</h3>
+
+<div class="overflow-x-auto">
+  <table class="table-auto w-full border border-gray-300 shadow-md rounded-md">
+    <thead class="bg-gray-800 text-white">
+      <tr>
+        <th class="px-4 py-2">ID</th>
+        <th class="px-4 py-2">Name</th>
+        <th class="px-4 py-2">Email</th>
+        <th class="px-4 py-2">City</th>
+      </tr>
+    </thead>
+    <tbody class="bg-white text-center">
+      <tr class="border-t">
+        <td class="px-4 py-2">{{ user[0] }}</td>
+        <td class="px-4 py-2">{{ user[1] }}</td>
+        <td class="px-4 py-2">{{ user[2] }}</td>
+        <td class="px-4 py-2">{{ user[3] }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+{% endblock %}

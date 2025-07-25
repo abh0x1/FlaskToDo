@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %} Home {% endblock %}
+{% block content %}
+
+<!-- Flash Messages -->
+{% with msg = get_flashed_messages(with_categories=True) %}
+{% if msg %}
+  {% for category, msg in msg %}
+    <div class="mb-4 p-4 rounded-md text-white font-semibold text-center 
+                {% if category == 'success' %} bg-green-500 
+                {% elif category == 'error' %} bg-red-500 
+                {% else %} bg-gray-500 {% endif %}">
+      {{ msg }}
+    </div>
+  {% endfor %}
+{% endif %}
+{% endwith %}
+
+<div class="flex gap-4">
+  <a href="{{ url_for('login_user') }}" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md">Login</a>
+  <a href="{{ url_for('add_user') }}" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-md">Sign Up</a>
+</div>
+
+{% endblock %}

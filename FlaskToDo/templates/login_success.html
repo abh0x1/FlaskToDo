@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block title %} Login Success {% endblock %}
+{% block content %}
+
+<!-- Flash Messages -->
+{% with msg = get_flashed_messages(with_categories=True) %}
+{% if msg %}
+  {% for category, msg in msg %}
+    <div class="mb-4 p-4 rounded-md text-white font-semibold text-center 
+                {% if category == 'success' %} bg-green-500 
+                {% elif category == 'error' %} bg-red-500 
+                {% else %} bg-gray-500 {% endif %}">
+      {{ msg }}
+    </div>
+  {% endfor %}
+{% endif %}
+{% endwith %}
+
+<h1 class="text-2xl font-bold text-gray-800">Welcome! {{ user or "Guest" }}</h1>
+
+{% endblock %}
